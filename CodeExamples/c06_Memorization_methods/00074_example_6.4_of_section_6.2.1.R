@@ -5,9 +5,9 @@
 mkPredC <- function(outCol,varCol,appCol) { 	# Note: 1 
    pPos <- sum(outCol==pos)/length(outCol) 	# Note: 2 
    naTab <- table(as.factor(outCol[is.na(varCol)]))
-   pPosWna <- (naTab/sum(naTab))[pos] 	# Note: 3 
+   pPosWna <- (naTab/sum(naTab))[as.character(pos)] 	# Note: 3 
    vTab <- table(as.factor(outCol),varCol)
-   pPosWv <- (vTab[pos,]+1.0e-3*pPos)/(colSums(vTab)+1.0e-3) 	# Note: 4 
+   pPosWv <- (vTab[as.character(pos),]+1.0e-3*pPos)/(colSums(vTab)+1.0e-3) 	# Note: 4 
    pred <- pPosWv[appCol] 	# Note: 5 
    pred[is.na(appCol)] <- pPosWna 	# Note: 6 
    pred[is.na(pred)] <- pPos 	# Note: 7 
